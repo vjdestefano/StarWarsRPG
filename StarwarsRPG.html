@@ -1,0 +1,128 @@
+<!doctype <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+</head>
+<body>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+
+//list of all the characters and their stats
+var lukeSkyWalker = {
+  Name:"luke",
+
+  baseAttk:7,
+
+  attackPower:7,
+
+  counterAttack:7,
+
+  healthPoints:250
+}
+
+console.log(lukeSkyWalker);
+
+var darthVader = {
+  Name:"Darth Vader",
+
+  baseAttk:9,
+
+  attackPower:9,
+
+  counterAttack:20,
+
+  healthPoints:200
+
+}
+
+var stormTrooper = {
+  Name:"Storm Trooper",
+
+  baseAttk:2,
+
+  attackPower:2,
+
+  counterAttack:2,
+
+  healthPoints:20
+
+}
+
+var yoda = {
+  Name:"Yoda",
+
+  baseAttk:10,
+
+  attackPower:10,
+
+  counterAttack:15,
+
+  healthPoints:120
+
+}
+
+ var characterArr = [lukeSkyWalker,
+darthVader,
+stormTrooper,
+ yoda];
+
+console.log(characterArr);
+
+
+console.log(darthVader["healthPoints"] - lukeSkyWalker["attackPower"]);
+// the array holding the characters
+//order the elements hp then damage done
+
+function attack(char,char2){
+  var h;  
+  h = char2.healthPoints - char.attackPower;
+  char2.healthPoints = h
+  //reducing the health of the defender
+  return h;
+}
+
+function attackDouble(char){
+  var a;
+  a = char.attackPower + char.baseAttk;
+  char.attackPower = a;
+  return a;
+}
+
+function counter(char, char2){
+  var c;
+  c = char.healthPoints - char2.counterAttack;
+  char.healthPoints = c;
+  return c;
+}
+
+
+console.log(attackDouble(stormTrooper));
+//order of (attacker, defender)
+console.log(attackDouble(stormTrooper));
+
+console.log(attackDouble(stormTrooper));
+
+
+
+
+
+
+
+});
+
+
+
+
+</script>  
+</body>
+</html>

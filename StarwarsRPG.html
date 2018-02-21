@@ -34,7 +34,7 @@
 
 
 
-
+      // ajavascript section with characters and functions///////////////////////////////////////////
       //list of all the characters and their stats
       var lukeSkyWalker = {
         name: "Luke",
@@ -143,12 +143,7 @@
         return c;
       }
 
-      function defenderArrPush(arr) {
-        if (!mainChar) {
-
-        }
-      }
-
+//////////////////////////////////////////////////////////////////////////////////
 
       console.log(attackDouble(stormTrooper));
       //order of (attacker, defender)
@@ -157,10 +152,6 @@
       console.log(attackDouble(stormTrooper));
 
 
-      function playerMove(arr) {
-
-
-      }
 
       for (var i = 0; i < characterArr.length; i++) {
 
@@ -190,6 +181,7 @@
       var defenderCharrArrNum = 0;
       var opponentChosen = false;
       var mainCharIsSelect = false;
+      var charactersDefeatedCount = 0;
 
 
 
@@ -202,8 +194,7 @@
         var isMainCharSelected = $(this).toggleClass("mainCharIsSelected").removeClass("notMain").removeClass(
           ".mainCharSelect");
         
-        console.log(isMainCharSelected);
-        console.log(charArrNum);
+        console.log("this is the mainCharacter's index number: " + charArrNum);
 
         mainCharrArrNum = charArrNum;
 
@@ -213,7 +204,7 @@
             console.log("this isnt working");
           }
 
-        console.log("THIS IS SHOWING AS maincharr: " + mainCharrArrNum);
+        console.log("main character chosen: " + characterArr[mainCharrArrNum].name);
         
         }
         mainCharIsSelect = true;
@@ -233,18 +224,19 @@
         if(mainCharIsSelect){
         var enemySelected = $(this).toggleClass("defender");
         var charArrNum2 = $(this).attr("charArrPos");
-        console.log("this is the enemy" + enemySelected);
-        console.log("this is charNum" + typeof charArrNum2);
 
-        defenderCharrArrNum = charArrNum2;
+        console.log("this is charNum " + charArrNum2);
 
-        console.log("this is  the defender Num: " + defenderCharrArrNum);
+        defenderCharrArrNum = parseInt(charArrNum2);
+
+        console.log("this is  the defender: " + characterArr[defenderCharrArrNum].name);
 
       
-          if ($(this).hasClass("defender")) {
-            $("#defender-section").append($(".defender"));
+          if ($(this).hasClass("defender") && $(this).hasClass("mainCharIsSelected")) {
+            return;
                      } else {
-            console.log("this isnt working");
+            $("#defender-section").append($(".defender"));
+           
           }
         }
         
@@ -253,20 +245,26 @@
       $(document).on("click", ".fight", function () {
 
         var selectedChar = characterArr[mainCharrArrNum];
-        console.log(" this is " + characterArr[selectedChar]);
-
+        console.log(selectedChar);
 
         var opponent = characterArr[defenderCharrArrNum];
 
         console.log(opponent);
-        console.log(characterArr[opponent]);
 
-        console.log(attack(selectedChar, opponent));
+        console.log( "enemy HP is now: " + attack(selectedChar, opponent));
+
+        console.log("this is your attack damage: " + attackDouble(selectedChar));
+
+        console.log( selectedChar.name + "'s HP is now: " + counter(selectedChar, opponent));
 
         if (opponent.healthPoints <= 0) {
           console.log('enemy is dead');
-          if (opponent > 3) {
+          charactersDefeatedCount++;
+          console.log(charactersDefeatedCount);
+          $("#defender-section").empty();
+          if (charactersDefeatedCount >= 3) {
             alert("there are no more opponents left! you WIN!")
+            //create a function that allows the game to be reset
           }
 
         }

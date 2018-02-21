@@ -1,5 +1,6 @@
 <!doctype <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,223 +9,276 @@
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
   <script src="main.js"></script>
 </head>
+
 <body>
 
-<div id= "charSelect">
+  <div id="charSelect">
 
-</div>
+  </div>
 
-<div id = "fight-button">
+  <div id="mainChar-section">
 
-</div>
+  </div>
 
-<div id = "defender-section">
+  <div id="fight-button">
 
-</div>
+  </div>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
-<script type="text/javascript">
+  <div id="defender-section">
 
-$(document).ready(function() {
+  </div>
 
+  <script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
 
 
 
-//list of all the characters and their stats
-var lukeSkyWalker = {
-  name:"Luke",
 
-  baseAttk:7,
+      //list of all the characters and their stats
+      var lukeSkyWalker = {
+        name: "Luke",
 
-  attackPower:7,
+        baseAttk: 7,
 
-  counterAttack:7,
+        attackPower: 7,
 
-  healthPoints:250,
+        counterAttack: 7,
 
-  mainChar: "false",
+        healthPoints: 250,
 
-}
+        mainChar: "false",
 
-console.log(lukeSkyWalker);
-//outputs the array of objects under lukeSkyWalker
-//damage, health, and counter attackdamage
+      }
 
-var darthVader = {
-  name:"Darth Vader",
+      console.log(lukeSkyWalker);
+      //outputs the array of objects under lukeSkyWalker
+      //damage, health, and counter attackdamage
 
-  baseAttk:9,
+      var darthVader = {
+        name: "Darth Vader",
 
-  attackPower:9,
+        baseAttk: 9,
 
-  counterAttack:20,
+        attackPower: 9,
 
-  healthPoints:200,
+        counterAttack: 20,
 
-  mainChar: "false",
-}
+        healthPoints: 200,
 
-var stormTrooper = {
-  name:"Storm Trooper",
+        mainChar: "false",
+      }
 
-  baseAttk:2,
+      var stormTrooper = {
+        name: "Storm Trooper",
 
-  attackPower:2,
+        baseAttk: 2,
 
-  counterAttack:2,
+        attackPower: 2,
 
-  healthPoints:20,
+        counterAttack: 2,
 
-  mainChar: "false",
+        healthPoints: 20,
 
-}
+        mainChar: "false",
 
-var yoda = {
-  name:"Yoda",
+      }
 
-  baseAttk:10,
+      var yoda = {
+        name: "Yoda",
 
-  attackPower:10,
+        baseAttk: 10,
 
-  counterAttack:15,
+        attackPower: 10,
 
-  healthPoints:120,
+        counterAttack: 15,
 
-  mainChar: "false",
+        healthPoints: 120,
 
+        mainChar: "false",
 
-}
 
- var characterArr = [lukeSkyWalker,
-darthVader,
-stormTrooper,
- yoda];
+      }
 
-var defenderArr = [];
+      var characterArr = [lukeSkyWalker,
+        darthVader,
+        stormTrooper,
+        yoda
+      ];
 
-function arraytest(arr){
-  for( var i = 0; i < arr.length; i++){
-    console.log(arr[i]);
-  }
-}
-arraytest(characterArr);
-console.log(characterArr);
+      var defenderArr = [];
 
+      function arraytest(arr) {
+        for (var i = 0; i < arr.length; i++) {
+          console.log(arr[i]);
+        }
+      }
+      arraytest(characterArr);
+      console.log(characterArr);
 
-console.log(darthVader["healthPoints"] - lukeSkyWalker["attackPower"]);
-// the array holding the characters
-//order the elements hp then damage done
 
-function attack(char,char2){
-  var h;  
-  h = char2.healthPoints - char.attackPower;
-  char2.healthPoints = h
-  //reducing the health of the defender
-  return h;
-}
+      console.log(darthVader["healthPoints"] - lukeSkyWalker["attackPower"]);
+      // the array holding the characters
+      //order the elements hp then damage done
 
-function attackDouble(char){
-  var a;
-  a = char.attackPower + char.baseAttk;
-  char.attackPower = a;
-  return a;
-}
+      function attack(char, char2) {
+        var h;
+        h = char2.healthPoints - char.attackPower;
+        char2.healthPoints = h
+        //reducing the health of the defender
+        return h;
+      }
 
-function counter(char, char2){
-  var c;
-  c = char.healthPoints - char2.counterAttack;
-  char.healthPoints = c;
-  return c;
-}
+      function attackDouble(char) {
+        var a;
+        a = char.attackPower + char.baseAttk;
+        char.attackPower = a;
+        return a;
+      }
 
-function defenderArrPush(arr){
-  if(!mainChar){
-    
-  }
-}
+      function counter(char, char2) {
+        var c;
+        c = char.healthPoints - char2.counterAttack;
+        char.healthPoints = c;
+        return c;
+      }
 
+      function defenderArrPush(arr) {
+        if (!mainChar) {
 
-console.log(attackDouble(stormTrooper));
-//order of (attacker, defender)
-console.log(attackDouble(stormTrooper));
+        }
+      }
 
-console.log(attackDouble(stormTrooper));
 
+      console.log(attackDouble(stormTrooper));
+      //order of (attacker, defender)
+      console.log(attackDouble(stormTrooper));
 
-function playerMove(arr){
-  
+      console.log(attackDouble(stormTrooper));
 
-}
 
-for( var i = 0; i < characterArr.length; i++){
+      function playerMove(arr) {
 
-  var charBtn = $("<button>");
 
-  charBtn.addClass("mainCharSelect attack-damage counter health-Points notMain");
+      }
 
-  charBtn.attr("character-name", characterArr[i].name)
-  //charBtn.attr("isMainChar", false);
-  charBtn.attr("charArrPos", i);
-  charBtn.text(characterArr[i].name);
+      for (var i = 0; i < characterArr.length; i++) {
 
-  $("#charSelect").append(charBtn);
+        var charBtn = $("<button>");
 
-  console.log(charBtn);
+        charBtn.addClass("mainCharSelect attack-damage counter health-Points notMain");
 
+        charBtn.attr("character-name", characterArr[i].name)
+        //charBtn.attr("isMainChar", false);
+        charBtn.attr("charArrPos", i);
+        charBtn.text(characterArr[i].name);
 
-}
+        $("#charSelect").append(charBtn);
 
-var mainCharrArrNum = 0;
+        console.log(charBtn);
 
-$(".mainCharSelect").on("click", function(){
-  
-  var isMainCharSelected = $(this).toggleClass("mainCharIsSelected").removeClass("notMain");;
-  var charArrNum = $(this).attr("charArrPos");
-  console.log(isMainCharSelected);
-  console.log(charArrNum);
+      };
 
-  mainCharrArrNum = charArrNum;
-  console.log(mainCharrArrNum);
 
-  if($(this).hasClass("mainCharIsSelected")){
-    $("#defender-section").append($( ".notMain" ));
-    $("#defender-section").addClass("defender");
-    var fightButton =  $("<button>");
-    fightButton.addClass("fight");
-    fightButton.text('FIGHT');
 
-    $("#fight-button").append(fightButton);
-  } else{
-    console.log("this isnt working");
-  }
+      var fightButton = $("<button>");
+          fightButton.addClass("fight test");
+          fightButton.text('FIGHT');
+          $("#fight-button").append(fightButton);
 
-  //make a function that puts all characters that aren't tagged with mainChar in to defender array
-  //push that defender array into the defender area
+      var mainCharrArrNum = 0;
+      var defenderCharrArrNum = 0;
+      var opponentChosen = false;
+      var mainCharIsSelect = false;
 
-});
 
 
+      $(".mainCharSelect").on("click", function () {
 
-$(".fight").on("click",function(){
+        if(!mainCharIsSelect){
+          
+        var charArrNum = $(this).attr("charArrPos");
+        
+        var isMainCharSelected = $(this).toggleClass("mainCharIsSelected").removeClass("notMain").removeClass(
+          ".mainCharSelect");
+        
+        console.log(isMainCharSelected);
+        console.log(charArrNum);
 
- var fightButtonClick = $(this);
- console.log(fightButtonClick);
-//attack();
-//put make a selector that enables main character
-//make an array of defenders
+        mainCharrArrNum = charArrNum;
 
+        if ($(this).hasClass("mainCharIsSelected")) {
+            $("#mainChar-section").append($(".mainCharIsSelected"));
+                     } else {
+            console.log("this isnt working");
+          }
 
-});
+        console.log("THIS IS SHOWING AS maincharr: " + mainCharrArrNum);
+        
+        }
+        mainCharIsSelect = true;
 
+        //make a function that puts all characters that aren't tagged with mainChar in to defender array
+        //push that defender array into the defender area
 
+      });
+      //hitting twice becuse its tagged as .notmain
+      $(".notMain").on("click", function () {
+        if(!opponentChosen){
+          console.log(opponentChosen)
+          opponentChosen = true;
+          return
+        } 
+        
+        if(mainCharIsSelect){
+        var enemySelected = $(this).toggleClass("defender");
+        var charArrNum2 = $(this).attr("charArrPos");
+        console.log("this is the enemy" + enemySelected);
+        console.log("this is charNum" + typeof charArrNum2);
 
+        defenderCharrArrNum = charArrNum2;
 
+        console.log("this is  the defender Num: " + defenderCharrArrNum);
 
-});
+      
+          if ($(this).hasClass("defender")) {
+            $("#defender-section").append($(".defender"));
+                     } else {
+            console.log("this isnt working");
+          }
+        }
+        
+      });
 
+      $(document).on("click", ".fight", function () {
 
+        var selectedChar = characterArr[mainCharrArrNum];
+        console.log(" this is " + characterArr[selectedChar]);
 
 
-</script>  
+        var opponent = characterArr[defenderCharrArrNum];
+
+        console.log(opponent);
+        console.log(characterArr[opponent]);
+
+        console.log(attack(selectedChar, opponent));
+
+        if (opponent.healthPoints <= 0) {
+          console.log('enemy is dead');
+          if (opponent > 3) {
+            alert("there are no more opponents left! you WIN!")
+          }
+
+        }
+
+      });
+
+
+
+
+
+    });
+  </script>
 </body>
+
 </html>

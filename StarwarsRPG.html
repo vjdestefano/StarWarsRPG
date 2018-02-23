@@ -23,7 +23,7 @@
 
       </div>
 
-      <div id="fight-button" class="col-2">
+      <div id="fight-button" class="col-4">
 
       </div>
 
@@ -37,9 +37,15 @@
   </div>
   <div class="row">
     <div id="gameOutputSquare" class="d-flex justify-content-center col-12">
-      <div id="gameOutput">
-        <p>
-          this is the output menu
+      <div id="gameOutputShell">
+        <p id="text-Op-hp">
+          your story will start here!
+        </p>
+        <p id="text-damage">
+          
+        </p>
+        <p id="text-main-hp">
+          
         </p>
 
       </div>
@@ -57,7 +63,9 @@
   <script type="text/javascript">
     $(document).ready(function () {
 
-    var gameOutputHTML = document.getElementById('gameOutput');
+      var gameOutputHTML = document.getElementById('text-Op-hp');
+      var textDamageHTML = document.getElementById("text-damage");
+      var textMainHpHTML = document.getElementById('text-main-hp');
 
       // ajavascript section with characters and functions///////////////////////////////////////////
       //list of all the characters and their stats
@@ -182,7 +190,7 @@
 
         var charDiv = $("<div>");
         charDiv.addClass('col-3');
-        charDiv.addClass("mainCharSelect attack-damage counter health-Points notMain");
+        charDiv.addClass("mainCharSelect notMain");
         charDiv.attr("charArrPos", i);
 
         var charImage = $('<img>');
@@ -216,16 +224,11 @@
 
 
         var charBtn = $("<button>");
-
-        charBtn.addClass("mainCharSelect attack-damage counter health-Points notMain");
+        charBtn.addClass("mainCharSelect notMain");
 
         charBtn.attr("character-name", characterArr[i].name)
         //charBtn.attr("isMainChar", false);
         //charBtn.attr("charArrPos", i);
-
-
-
-        console.log(charBtn);
 
 
         charDiv.append(charImage);
@@ -332,11 +335,21 @@
 
         console.log(opponent);
 
-        console.log("enemy HP is now: " + attack(selectedChar, opponent));
+        var textOutput = ("enemy HP is now: " + attack(selectedChar, opponent));
+
+        var textDamageOutput = ("this is your attack damage: " + attackDouble(selectedChar));
+
+        var textMainHP = (selectedChar.name + "'s HP is now: " + counter(selectedChar, opponent));
 
         console.log("this is your attack damage: " + attackDouble(selectedChar));
 
         console.log(selectedChar.name + "'s HP is now: " + counter(selectedChar, opponent));
+
+        gameOutputHTML.textContent = textOutput;
+
+        textDamageHTML.textContent = textDamageOutput;
+
+        textMainHpHTML.textContent = textMainHP;
 
         if (opponent.healthPoints <= 0) {
           console.log('enemy is dead');

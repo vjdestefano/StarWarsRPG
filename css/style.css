@@ -1,0 +1,27 @@
+#charSelect, #mainChar-section,
+#fightButton, #defender-section{
+  padding-bottom: 3%;
+}
+
+.card-img-top{
+ width: 200px;
+ height: 200px;
+ margin:2%;
+}
+
+.list-group-item{
+  font-size: 12px;
+}
+
+.mainCharSelect{
+  padding-left: 1%;
+}
+
+#gameOutputSquare{
+  margin: 1%;
+  margin-top:2%;
+  padding: 5%;
+  outline: 5px;
+  outline-style: double;
+  outline-color: black;
+}

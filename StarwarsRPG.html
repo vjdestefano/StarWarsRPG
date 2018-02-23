@@ -6,33 +6,58 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Page Title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
   <script src="main.js"></script>
 </head>
 
 <body>
+  <div class=" container">
+    <div id="charSelect" class="row">
 
-  <div id="charSelect">
+
+
+    </div>
+    <div class="row">
+      <div id="mainChar-section">
+
+      </div>
+
+      <div id="fight-button" class="col-2">
+
+      </div>
+
+      <div id="defender-section">
+
+      </div>
+
+    </div>
+
+
+  </div>
+  <div class="row">
+    <div id="gameOutputSquare" class="d-flex justify-content-center col-12">
+      <div id="gameOutput">
+        <p>
+          this is the output menu
+        </p>
+
+      </div>
+    </div>
 
   </div>
 
-  <div id="mainChar-section">
-
   </div>
 
-  <div id="fight-button">
 
-  </div>
 
-  <div id="defender-section">
 
-  </div>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
 
-
+    var gameOutputHTML = document.getElementById('gameOutput');
 
       // ajavascript section with characters and functions///////////////////////////////////////////
       //list of all the characters and their stats
@@ -47,7 +72,7 @@
 
         healthPoints: 250,
 
-        mainChar: "false",
+        mainChar: "./images/luke.jpg",
 
       }
 
@@ -66,7 +91,7 @@
 
         healthPoints: 200,
 
-        mainChar: "false",
+        mainChar: "./images/vader.jpg",
       }
 
       var stormTrooper = {
@@ -80,7 +105,7 @@
 
         healthPoints: 20,
 
-        mainChar: "false",
+        mainChar: "./images/storm.jpg",
 
       }
 
@@ -95,7 +120,7 @@
 
         healthPoints: 120,
 
-        mainChar: "false",
+        mainChar: "./images/yoda.jpg",
 
 
       }
@@ -143,7 +168,7 @@
         return c;
       }
 
-//////////////////////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////////////////////
 
       console.log(attackDouble(stormTrooper));
       //order of (attacker, defender)
@@ -155,27 +180,83 @@
 
       for (var i = 0; i < characterArr.length; i++) {
 
+        var charDiv = $("<div>");
+        charDiv.addClass('col-3');
+        charDiv.addClass("mainCharSelect attack-damage counter health-Points notMain");
+        charDiv.attr("charArrPos", i);
+
+        var charImage = $('<img>');
+        charImage.addClass("card-img-top");
+        charImage.attr("src", characterArr[i].mainChar);
+
+        var charCardBody = $("<div>");
+        charCardBody.addClass("card-body");
+
+        var charUlList = $("<ul>");
+        charUlList.addClass("list-group list-group-flush")
+
+        var charAttackProp = $("<li>");
+        charAttackProp.addClass("list-group-item");
+        charAttackProp.attr("attack-damage", characterArr[i].baseAttk);
+
+        var charCounterProp = $("<li>");
+        charCounterProp.addClass("list-group-item");
+        charCounterProp.attr("counter", characterArr[i].counterAttack);
+
+        var charHpProp = $("<li>");
+        charHpProp.addClass("list-group-item");
+        charHpProp.attr("health-points", characterArr[i].healthPoints);
+
+
+        charImage.html($(".card-img-top").attr("src"));
+        charCardBody.text($(".card-body"));
+        charAttackProp.text($(".list-group-item").attr("attack-damage"));
+        charCounterProp.text($(".list-group-item").attr("counter"));
+
+
+
         var charBtn = $("<button>");
 
         charBtn.addClass("mainCharSelect attack-damage counter health-Points notMain");
 
         charBtn.attr("character-name", characterArr[i].name)
         //charBtn.attr("isMainChar", false);
-        charBtn.attr("charArrPos", i);
-        charBtn.text(characterArr[i].name);
+        //charBtn.attr("charArrPos", i);
 
-        $("#charSelect").append(charBtn);
+
 
         console.log(charBtn);
+
+
+        charDiv.append(charImage);
+        charDiv.append(charCardBody);
+        charCardBody.html(charUlList);
+        charUlList.append(charAttackProp);
+        charAttackProp.html("Base Attack damage: " + characterArr[i].baseAttk);
+        charUlList.append(charCounterProp);
+        charCounterProp.html("counter Attack damage: " + characterArr[i].counterAttack);
+        charUlList.append(charHpProp);
+        charHpProp.html("HP: " + characterArr[i].healthPoints);
+        charCardBody.append(charBtn);
+        charBtn.text(characterArr[i].name);
+        //this is all under the char div so it is being forced into the charselect class
+
+        $("#charSelect").append(charDiv);
+
+
+
+
+
+
 
       };
 
 
 
       var fightButton = $("<button>");
-          fightButton.addClass("fight test");
-          fightButton.text('FIGHT');
-          $("#fight-button").append(fightButton);
+      fightButton.addClass("fight test");
+      fightButton.text('FIGHT');
+      $("#fight-button").append(fightButton);
 
       var mainCharrArrNum = 0;
       var defenderCharrArrNum = 0;
@@ -187,25 +268,25 @@
 
       $(".mainCharSelect").on("click", function () {
 
-        if(!mainCharIsSelect){
-          
-        var charArrNum = $(this).attr("charArrPos");
-        
-        var isMainCharSelected = $(this).toggleClass("mainCharIsSelected").removeClass("notMain").removeClass(
-          ".mainCharSelect");
-        
-        console.log("this is the mainCharacter's index number: " + charArrNum);
+        if (!mainCharIsSelect) {
 
-        mainCharrArrNum = charArrNum;
+          var charArrNum = $(this).attr("charArrPos");
 
-        if ($(this).hasClass("mainCharIsSelected")) {
-            $("#mainChar-section").append($(".mainCharIsSelected"));
-                     } else {
+          var isMainCharSelected = $(this).toggleClass("mainCharIsSelected").removeClass("notMain").removeClass(
+            ".mainCharSelect");
+
+          console.log("this is the mainCharacter's index number: " + charArrNum);
+
+          mainCharrArrNum = charArrNum;
+
+          if ($(this).hasClass("mainCharIsSelected")) {
+            $("#mainChar-section").html($(".mainCharIsSelected"));
+          } else {
             console.log("this isnt working");
           }
 
-        console.log("main character chosen: " + characterArr[mainCharrArrNum].name);
-        
+          console.log("main character chosen: " + characterArr[mainCharrArrNum].name);
+
         }
         mainCharIsSelect = true;
 
@@ -215,31 +296,31 @@
       });
       //hitting twice becuse its tagged as .notmain
       $(".notMain").on("click", function () {
-        if(!opponentChosen){
+        if (!opponentChosen) {
           console.log(opponentChosen)
           opponentChosen = true;
           return
-        } 
-        
-        if(mainCharIsSelect){
-        var enemySelected = $(this).toggleClass("defender");
-        var charArrNum2 = $(this).attr("charArrPos");
+        }
 
-        console.log("this is charNum " + charArrNum2);
+        if (mainCharIsSelect) {
+          var enemySelected = $(this).toggleClass("defender");
+          var charArrNum2 = $(this).attr("charArrPos");
 
-        defenderCharrArrNum = parseInt(charArrNum2);
+          console.log("this is charNum " + charArrNum2);
 
-        console.log("this is  the defender: " + characterArr[defenderCharrArrNum].name);
+          defenderCharrArrNum = parseInt(charArrNum2);
 
-      
+          console.log("this is  the defender: " + characterArr[defenderCharrArrNum].name);
+
+
           if ($(this).hasClass("defender") && $(this).hasClass("mainCharIsSelected")) {
             return;
-                     } else {
-            $("#defender-section").append($(".defender"));
-           
+          } else {
+            $("#defender-section").html($(".defender"));
+
           }
         }
-        
+
       });
 
       $(document).on("click", ".fight", function () {
@@ -251,11 +332,11 @@
 
         console.log(opponent);
 
-        console.log( "enemy HP is now: " + attack(selectedChar, opponent));
+        console.log("enemy HP is now: " + attack(selectedChar, opponent));
 
         console.log("this is your attack damage: " + attackDouble(selectedChar));
 
-        console.log( selectedChar.name + "'s HP is now: " + counter(selectedChar, opponent));
+        console.log(selectedChar.name + "'s HP is now: " + counter(selectedChar, opponent));
 
         if (opponent.healthPoints <= 0) {
           console.log('enemy is dead');

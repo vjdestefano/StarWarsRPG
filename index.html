@@ -4,9 +4,10 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Page Title</title>
+  <title>StarWars Game</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
   <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
   <script src="main.js"></script>
 </head>
@@ -23,7 +24,7 @@
 
       </div>
 
-      <div id="fight-button" class="col-4">
+      <div id="fight-button" class="justify-content-center col-2">
 
       </div>
 
@@ -227,8 +228,6 @@
         charBtn.addClass("mainCharSelect notMain");
 
         charBtn.attr("character-name", characterArr[i].name)
-        //charBtn.attr("isMainChar", false);
-        //charBtn.attr("charArrPos", i);
 
 
         charDiv.append(charImage);
@@ -245,11 +244,6 @@
         //this is all under the char div so it is being forced into the charselect class
 
         $("#charSelect").append(charDiv);
-
-
-
-
-
 
 
       };
@@ -336,6 +330,7 @@
         console.log(opponent);
 
         var textOutput = ("enemy HP is now: " + attack(selectedChar, opponent));
+        healthColors();
 
         var textDamageOutput = ("this is your attack damage: " + attackDouble(selectedChar));
 
@@ -364,8 +359,6 @@
         }
 
       });
-
-
 
 
 

@@ -139,8 +139,10 @@
         stormTrooper,
         yoda
       ];
+      // the array of all character objects
 
       var defenderArr = [];
+      //the empty array that isnt used but thought it might be helpful
 
       function arraytest(arr) {
         for (var i = 0; i < arr.length; i++) {
@@ -168,6 +170,7 @@
         a = char.attackPower + char.baseAttk;
         char.attackPower = a;
         return a;
+        //increases the charcters attack damage by his base attack power
       }
 
       function counter(char, char2) {
@@ -175,6 +178,7 @@
         c = char.healthPoints - char2.counterAttack;
         char.healthPoints = c;
         return c;
+        //redues the players HP by the the counter attack damage
       }
 
       //////////////////////////////////////////////////////////////////////////////////
@@ -193,10 +197,14 @@
         charDiv.addClass('col-3');
         charDiv.addClass("mainCharSelect notMain");
         charDiv.attr("charArrPos", i);
+        //creates a div with the class of col-3 and the others
+        //also returns a number which the is used to grb the characters
+
 
         var charImage = $('<img>');
         charImage.addClass("card-img-top");
         charImage.attr("src", characterArr[i].mainChar);
+        //creates and image tag with the source attribute linked to the characters array
 
         var charCardBody = $("<div>");
         charCardBody.addClass("card-body");
@@ -254,12 +262,15 @@
       fightButton.addClass("fight test");
       fightButton.text('FIGHT');
       $("#fight-button").append(fightButton);
+      //creates the fight button
 
       var mainCharrArrNum = 0;
       var defenderCharrArrNum = 0;
       var opponentChosen = false;
       var mainCharIsSelect = false;
       var charactersDefeatedCount = 0;
+
+      //variables used to grab things globally and assign them values for functions to use
 
 
 
@@ -281,7 +292,7 @@
           } else {
             console.log("this isnt working");
           }
-
+          //if the mainchar tag is applied the mainchar section get the html elements of the clas maincha
           console.log("main character chosen: " + characterArr[mainCharrArrNum].name);
 
         }
@@ -330,7 +341,7 @@
         console.log(opponent);
 
         var textOutput = ("enemy HP is now: " + attack(selectedChar, opponent));
-        healthColors();
+        
 
         var textDamageOutput = ("this is your attack damage: " + attackDouble(selectedChar));
 
